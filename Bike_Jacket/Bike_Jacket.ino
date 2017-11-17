@@ -27,11 +27,8 @@
  const int stopButton = A3;  //button that controls stop lights
 
  //variables to be used in the program
- int lastRState = 0;
- int currRState = 0;
- int lastLState = 0;
- int currLstate = 0;
- int stopState = 0;
+ int RCount = 0;
+ int LCount = 0;
  int wait = 75;
  
  void setup() 
@@ -52,8 +49,17 @@
 
 void loop() 
 {
-  currRState = analogRead(rButton);
-  if (currRState == 0) //if button is pressed
+  turnRight();
+  turnLeft();
+}
+
+void turnRight()
+{
+  if (analogRead(rButton) == 0) //if button is pressed
+  {
+   RCount++;
+  }
+  while(RCount == 1)
   {
    digitalWrite(rLED, HIGH);
    digitalWrite(right1, HIGH);
@@ -75,16 +81,51 @@ void loop()
    digitalWrite(right4, LOW);
    digitalWrite(rLED, LOW);
    delay(wait);
-  }
 
-  else
-  {
-    digitalWrite(right1, LOW);
-   digitalWrite(right2, LOW);
-   digitalWrite(right3, LOW);
-   digitalWrite(right4, LOW);
-   digitalWrite(rLED, LOW);
+   if(analogRead(rButton) == 0)
+   {
+    RCount++;
+   }
   }
- 
-  
+  RCount = 0;
+  delay(500);
 }
+
+void turnLeft()
+{
+  if (analogRead(lButton) == 0) //if button is pressed
+  {
+   LCount++;
+  }
+  while(LCount == 1)
+  {
+   digitalWrite(lLED, HIGH);
+   digitalWrite(left1, HIGH);
+   delay(wait);
+   digitalWrite(left1, LOW);
+   delay(wait);
+   digitalWrite(lLED, LOW);
+   digitalWrite(left2, HIGH);
+   delay(wait);
+   digitalWrite(left2, LOW);
+   delay(wait);
+   digitalWrite(lLED, HIGH);
+   digitalWrite(left3, HIGH);
+   delay(wait);
+   digitalWrite(left3, LOW);
+   delay(wait);
+   digitalWrite(left4, HIGH);
+   delay(wait);
+   digitalWrite(left4, LOW);
+   digitalWrite(lLED, LOW);
+   delay(wait);
+
+   if(analogRead(lButton) == 0)
+   {
+    LCount++;
+   }
+  }
+  LCount = 0;
+  delay(500);
+}
+

@@ -51,6 +51,7 @@ void loop()
 {
   turnRight();
   turnLeft();
+  brake();
 }
 
 void turnRight()
@@ -128,4 +129,30 @@ void turnLeft()
   LCount = 0;
   delay(500);
 }
+
+void brake()
+{
+  if (analogRead(stopButton) == 0) //if button is pressed
+  {
+   BCount++;
+  }
+  while(BCount == 1)
+  {
+   digitalWrite(stopLED, HIGH);
+   digitalWrite(rLED, HIGH);
+   delay(wait*2);
+   digitalWrite(rLED, LOW);
+   delay(wait*2);
+  
+   
+   if(analogRead(stopButton) == 0)
+   {
+    BCount++;
+   }
+  }
+  digitalWrite(stopLED, LOW);
+  BCount = 0;
+  delay(500);
+}
+
 

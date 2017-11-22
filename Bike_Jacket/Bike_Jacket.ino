@@ -29,6 +29,8 @@
  //variables to be used in the program
  int RCount = 0;
  int LCount = 0;
+ int BCount = 0;
+ int Ncount = 0;
  int wait = 75;
  
  void setup() 
@@ -58,6 +60,15 @@ void turnRight()
 {
   if (analogRead(rButton) == 0) //if button is pressed
   {
+    while(analogRead(rButton) == 0) //while pressed check to see if other is pressed
+    {
+      if (analogRead(lButton) == 0) //if both pressed
+      {
+        NCount++;
+        nightTime(); //activate nightTime mode
+        return;
+      }
+    }
    RCount++;
   }
   while(RCount == 1)
@@ -96,6 +107,15 @@ void turnLeft()
 {
   if (analogRead(lButton) == 0) //if button is pressed
   {
+    while (analogRead(lButton) == 0)
+    {
+      if (analogRead(rButton) == 0)
+      {
+        NCount++;
+        nightTime();
+        return;
+      }
+    }
    LCount++;
   }
   while(LCount == 1)
@@ -155,4 +175,63 @@ void brake()
   delay(500);
 }
 
+void nightTime()
+{
+  while (NCount == 1)
+  {
+   digitalWrite(stopLED, LOW);
+   digitalWrite(rLED, HIGH);
+   digitalWrite(lLED, HIGH);
+   digitalWrite(right1,HIGH);
+   digitalWrite(left1, HIGH);
+   delay(wait);
+   digitalWrite(rLED, LOW);
+   digitalWrite(lLED, LOW);
+   digitalWrite(right1,LOW);
+   digitalWrite(left1, LOW);
+   delay(wait);
+   digitalWrite(stopLED, HIGH);
+   digitalWrite(rLED, HIGH);
+   digitalWrite(lLED, HIGH);
+   digitalWrite(right2,HIGH);
+   digitalWrite(left2, HIGH);
+   delay(wait);
+   digitalWrite(rLED, LOW);
+   digitalWrite(lLED, LOW);
+   digitalWrite(right2,LOW);
+   digitalWrite(left2, LOW);
+   delay(wait);
+   digitalWrite(stopLED, LOW);
+   digitalWrite(rLED, HIGH);
+   digitalWrite(lLED, HIGH);
+   digitalWrite(right3,HIGH);
+   digitalWrite(left3, HIGH);
+   delay(wait);
+   digitalWrite(rLED, LOW);
+   digitalWrite(lLED, LOW);
+   digitalWrite(right3,LOW);
+   digitalWrite(left3, LOW);
+   delay(wait);
+   digitalWrite(stopLED, HIGH);
+   digitalWrite(rLED, HIGH);
+   digitalWrite(lLED, HIGH);
+   digitalWrite(right4,HIGH);
+   digitalWrite(left4, HIGH);
+   delay(wait);
+   digitalWrite(rLED, LOW);
+   digitalWrite(lLED, LOW);
+   digitalWrite(right4,LOW);
+   digitalWrite(left4, LOW);
+   delay(wait);
+ 
+
+   if (analogRead(rButton) == 0 || analogRead(lButton) == 0)
+   {
+    NCount++;
+   }
+  }
+  digitalWrite(stopLED, LOW);
+  NCount = 0;
+  delay(500);
+}
 

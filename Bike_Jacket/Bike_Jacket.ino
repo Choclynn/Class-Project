@@ -3,8 +3,21 @@
  turn indicators and brake lights to simulate that of
  a car. Each inidicator has it's own button that controls
  it by pushing it. There is a third button that controls 
- the brake lights, however this light must be held in order for
- the brake lights to be on. 
+ the brake lights. Should both of the indicator buttons
+ be pushed at the same time then a night time visability
+ function will start that blinks all lights in a fashion
+ that helps increase visability. 
+ One note is that both the right turn and stopping
+ buttons are located on hte right sleeve of the jacket
+ this program will control.
+ Another important note is that in all functions they
+ will only stop at the end of their cycle and not in the
+ middle or whenever the button is pressed. It is coded in
+ a way that only checks the buttons status at the end of 
+ the while thus it will only turn off at the end of the 
+ functions cycle.
+
+ This code is made by Quinten Ruckaber on Nov.22/17 
  */
  //constants to be used in the program
  const int right1 = 5;  //
@@ -27,11 +40,11 @@
  const int stopButton = A3;  //button that controls stop lights
 
  //variables to be used in the program
- int RCount = 0;
- int LCount = 0;
- int BCount = 0;
- int Ncount = 0;
- int wait = 75;
+ int RCount = 0;      //counter used to control the right turn function
+ int LCount = 0;      //counter used to control the left turn function
+ int BCount = 0;      //counter used to control the brake function
+ int Ncount = 0;      //counter used to control the nightTime function
+ int wait = 75;       //a delay used to control the pace of light commands
  
  void setup() 
  {
@@ -56,6 +69,10 @@ void loop()
   brake();
 }
 
+/*
+ This function will turn on the right indicator to alert those
+ around the biker that they intend to make a right turn.
+ */
 void turnRight()
 {
   if (analogRead(rButton) == 0) //if button is pressed
@@ -64,174 +81,213 @@ void turnRight()
     {
       if (analogRead(lButton) == 0) //if both pressed
       {
-        NCount++;
+        NCount++; //up night counter by 1
         nightTime(); //activate nightTime mode
-        return;
+        return; //exit this function at this point once nightTime function is ended
       }
     }
-   RCount++;
+   RCount++;  //if only the right button is pressed, up right counter by 1
   }
-  while(RCount == 1)
+  while(RCount == 1)  //as long as right counter is 1, do the following
   {
-   digitalWrite(rLED, HIGH);
+   //this will turn on the right indicator in a fashion that blinks 1 column at a time
+   //starts at the inner-most light and work towards the tip of the arrow
+   digitalWrite(rLED, LOW);    //right hand LED off
    digitalWrite(right1, HIGH);
    delay(wait);
    digitalWrite(right1, LOW);
    delay(wait);
-   digitalWrite(rLED, LOW);
+   digitalWrite(rLED, HIGH);     //right hand LED on
    digitalWrite(right2, HIGH);
    delay(wait);
    digitalWrite(right2, LOW);
    delay(wait);
-   digitalWrite(rLED, HIGH);
+   digitalWrite(rLED, LOW);    //right hand LED off
    digitalWrite(right3, HIGH);
    delay(wait);
    digitalWrite(right3, LOW);
    delay(wait);
+   digitalWrite(rLED, HIGH);     //right hand LED on
    digitalWrite(right4, HIGH);
    delay(wait);
    digitalWrite(right4, LOW);
-   digitalWrite(rLED, LOW);
    delay(wait);
 
-   if(analogRead(rButton) == 0)
+   if(analogRead(rButton) == 0) //check to see if the right button is pushed
    {
+    //if so increase right counter by 1, this causes an exit of the while loop 
     RCount++;
    }
   }
+  //turn off hand LED as it was left on
+  digitalWrite(rLED, LOW);
+  //reset right counter so re-entry of function will work properly
   RCount = 0;
   delay(500);
 }
 
+/*
+ This function will turn on the left indicator to alert those
+ around the biker that they intend to make a left turn.
+ */
 void turnLeft()
 {
   if (analogRead(lButton) == 0) //if button is pressed
   {
-    while (analogRead(lButton) == 0)
+    while (analogRead(lButton) == 0)  //while pressed, check to see if both are pressed
     {
-      if (analogRead(rButton) == 0)
+      if (analogRead(rButton) == 0) //if both pressed 
       {
-        NCount++;
-        nightTime();
-        return;
+        NCount++; //up night counter by 1
+        nightTime();  //activate nightTime mode
+        return; //exit this function at this point once nightTime function is ended
       }
     }
-   LCount++;
+   LCount++;  //if only left button is pressed, up left counter by 1
   }
-  while(LCount == 1)
+  while(LCount == 1)  //as long as left counter is 1, do the following
   {
-   digitalWrite(lLED, HIGH);
+   //this will turn on the left indicator in a fashion that blinks 1 column at a time
+   //starts at the inner-most light and work towards the tip of the arrow
+   digitalWrite(lLED, LOW);   //left hand LED off
    digitalWrite(left1, HIGH);
    delay(wait);
    digitalWrite(left1, LOW);
    delay(wait);
-   digitalWrite(lLED, LOW);
+   digitalWrite(lLED, HIGH);  //left hand LED on
    digitalWrite(left2, HIGH);
    delay(wait);
    digitalWrite(left2, LOW);
    delay(wait);
-   digitalWrite(lLED, HIGH);
+   digitalWrite(lLED, LOW);   //left hand LED off
    digitalWrite(left3, HIGH);
    delay(wait);
    digitalWrite(left3, LOW);
    delay(wait);
+   digitalWrite(lLED, HIGH);  //left hand LED on
    digitalWrite(left4, HIGH);
    delay(wait);
    digitalWrite(left4, LOW);
-   digitalWrite(lLED, LOW);
    delay(wait);
 
-   if(analogRead(lButton) == 0)
+   if(analogRead(lButton) == 0) //check to see if left button is pushed 
    {
+    //if pressed, up the left counter, this causes exit of the while loop
     LCount++;
    }
   }
+  //turn of left hand LED as it was left on
+  digitalWrite(lLED, LOW);
+  //reset left counter so re-entry to this function will work properly
   LCount = 0;
   delay(500);
 }
 
+/*
+ This function will turn on the brake lights to alert those
+ around the biker that they intend to brake or are braking.
+ */
 void brake()
 {
   if (analogRead(stopButton) == 0) //if button is pressed
   {
-   BCount++;
+   BCount++;  //up the brake counter by 1
   }
-  while(BCount == 1)
+  while(BCount == 1)  //as long as brake counter is 1, do the following
   {
+   //this turns on the brake lights until the loop is exited, but blinks hand
+   //LED so the biker is aware it's on and working
    digitalWrite(stopLED, HIGH);
-   digitalWrite(rLED, HIGH);
+   digitalWrite(rLED, HIGH);      //right hand LED on
    delay(wait*2);
-   digitalWrite(rLED, LOW);
+   digitalWrite(rLED, LOW);       //right hand LED off
    delay(wait*2);
   
    
-   if(analogRead(stopButton) == 0)
+   if(analogRead(stopButton) == 0)  //check to see if brake button is pressed
    {
+    //if so, up brake count by 1, this causes exit of the while loop
     BCount++;
    }
   }
+  //turn off brake lights as they were left on
   digitalWrite(stopLED, LOW);
+  //reset brake counter to allow re-entry of this function to work properly
   BCount = 0;
   delay(500);
 }
 
+/*
+ This function turns on and off all LEDs in the pattern below.
+ The purpose is to help improve visability of the biker in the 
+ dark by having all LEDs blink on and off. No braking of turn functions
+ allowed while this function is on.
+ */
 void nightTime()
 {
-  while (NCount == 1)
+  while (NCount == 1) //as long as the night counter is 1, do the following
   {
-   digitalWrite(stopLED, LOW);
-   digitalWrite(rLED, HIGH);
-   digitalWrite(lLED, HIGH);
+   //this will turn on both indicators in a fashion that blinks 1 column at a time
+   //starts at the inner-most light and work towards the tip of the arrow
+   //while also doing the patterns below as described
+   digitalWrite(stopLED, LOW);  //turn off brake lights
+   digitalWrite(rLED, HIGH);      //
+   digitalWrite(lLED, HIGH);      //turn on both hand LEDs
    digitalWrite(right1,HIGH);
    digitalWrite(left1, HIGH);
    delay(wait);
-   digitalWrite(rLED, LOW);
-   digitalWrite(lLED, LOW);
+   digitalWrite(rLED, LOW);     //
+   digitalWrite(lLED, LOW);     //turn off both hands LEDs
    digitalWrite(right1,LOW);
    digitalWrite(left1, LOW);
    delay(wait);
-   digitalWrite(stopLED, HIGH);
-   digitalWrite(rLED, HIGH);
-   digitalWrite(lLED, HIGH);
+   digitalWrite(stopLED, HIGH); //turn on brake lights
+   digitalWrite(rLED, HIGH);      //
+   digitalWrite(lLED, HIGH);      //turn on both hand LEDs
    digitalWrite(right2,HIGH);
    digitalWrite(left2, HIGH);
    delay(wait);
-   digitalWrite(rLED, LOW);
-   digitalWrite(lLED, LOW);
+   digitalWrite(rLED, LOW);     //
+   digitalWrite(lLED, LOW);     //turn off both hands LEDs
    digitalWrite(right2,LOW);
    digitalWrite(left2, LOW);
    delay(wait);
-   digitalWrite(stopLED, LOW);
-   digitalWrite(rLED, HIGH);
-   digitalWrite(lLED, HIGH);
+   digitalWrite(stopLED, LOW);  //turn off brake lights
+   digitalWrite(rLED, HIGH);      //
+   digitalWrite(lLED, HIGH);      //turn on both hand LEDs
    digitalWrite(right3,HIGH);
    digitalWrite(left3, HIGH);
    delay(wait);
-   digitalWrite(rLED, LOW);
-   digitalWrite(lLED, LOW);
+   digitalWrite(rLED, LOW);     //
+   digitalWrite(lLED, LOW);     //turn off both hands LEDs
    digitalWrite(right3,LOW);
    digitalWrite(left3, LOW);
    delay(wait);
-   digitalWrite(stopLED, HIGH);
-   digitalWrite(rLED, HIGH);
-   digitalWrite(lLED, HIGH);
+   digitalWrite(stopLED, HIGH); //turn on brake lights
+   digitalWrite(rLED, HIGH);      //
+   digitalWrite(lLED, HIGH);      //turn on both hand LEDs
    digitalWrite(right4,HIGH);
    digitalWrite(left4, HIGH);
    delay(wait);
-   digitalWrite(rLED, LOW);
-   digitalWrite(lLED, LOW);
+   digitalWrite(rLED, LOW);     //
+   digitalWrite(lLED, LOW);     //turn off both hands LEDs
    digitalWrite(right4,LOW);
    digitalWrite(left4, LOW);
    delay(wait);
  
-
+   //check to see if either indicator button is pressed
    if (analogRead(rButton) == 0 || analogRead(lButton) == 0)
    {
+    //if so, up night counter by 1, this causes an exit of the while loop
     NCount++;
    }
   }
+  //turn off brake lights as they were left on
   digitalWrite(stopLED, LOW);
   NCount = 0;
   delay(500);
+
+  //the end of this function takes you back to one of the turn functions
+  //that is the reason why the return is placed after the function call in both cases
 }
 

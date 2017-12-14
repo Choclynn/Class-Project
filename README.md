@@ -34,6 +34,7 @@ a simple picture showing how to set up an LED and a push button but won't
 give a view of the jacket as it rather messy and I can't draw very well.
 I will however give a picture showing which of my LEDs are linked together to
 give one and idea of how wiring may work.
+
 ![LED and Button Pic](https://github.com/Choclynn/Class-Project/blob/master/LED%20and%20Button%20Arduino.png)
 
 

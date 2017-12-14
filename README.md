@@ -1,7 +1,7 @@
 # Biking Jacket
 
 As the above title suggests this project is a jacket that is meant
-to be worn when going out for a bike ride. This bike will provide
+to be worn when going out for a bike ride. This jacket will provide
 the wearer four basic functions. A turn left signal, a turn right
 signal, brake lights, and finally a night time visability mode.
 This particular project is controlled by an Ardunio Uno.
@@ -32,9 +32,9 @@ more difficult task as grounding becomes a much harder task just as an example. 
 some planning occur before actually sewing stuff to the jacket. I will provide
 a simple picture showing how to set up an LED and a push button but won't
 give a view of the jacket as it rather messy and I can't draw very well.
-**LED and button picture can be found at the top.**
 I will however give a picture showing which of my LEDs are linked together to
 give one and idea of how wiring may work.
+![LED and Button Pic](https://github.com/Choclynn/Class-Project/blob/master/LED%20and%20Button%20Arduino.png)
 
 
 

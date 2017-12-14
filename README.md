@@ -10,15 +10,15 @@ A picture of the project will eventually end up here!!
 
 # List of Materials
 The materials I ended up using include:
-*Ardunio Uno
-*external arduino battery pack
-*five AA batteries
-*zip-up hoodie
-*one spool of conductive thread (3ply)
-*Three resistors (10,000ohm)
-*pair of scissors
-*various needles
-*sewable LEDs (3 colours)
-*electrical tape
-*three basic push buttons
-*wires to connect to Arduino 
+* Ardunio Uno
+* external arduino battery pack
+* five AA batteries
+* zip-up hoodie
+* one spool of conductive thread (3ply)
+* Three resistors (10,000ohm)
+* pair of scissors
+* various needles
+* sewable LEDs (3 colours)
+* electrical tape
+* three basic push buttons
+* wires to connect to Arduino 

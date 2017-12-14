@@ -32,7 +32,7 @@ more difficult task as grounding becomes a much harder task just as an example. 
 some planning occur before actually sewing stuff to the jacket. I will provide
 a simple picture showing how to set up an LED and a push button but won't
 give a view of the jacket as it rather messy and I can't draw very well.
-*LED and button picture can be found at the top*
+**LED and button picture can be found at the top.**
 I will however give a picture showing which of my LEDs are linked together to
 give one and idea of how wiring may work.
 

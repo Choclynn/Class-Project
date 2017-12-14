@@ -84,7 +84,7 @@ when it came to sewing!
 
 # Credits
 The main inspiration and start point for the build came from:
-* Leah Buechley from Instrucable.com (Turn Signal Biking Jacket)
+* Leah Buechley - http://www.instructables.com/id/turn-signal-biking-jacket/
 A commentor however also did something similar and provided help with
 more of the code aspect of the jacket:
 * Chris Ruppel - https://chrisruppel.com/blog/lilypad-arduino-biking-jacket/

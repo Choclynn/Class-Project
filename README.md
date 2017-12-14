@@ -34,3 +34,44 @@ a simple picture showing how to set up an LED and a push button but won't
 give a view of the jacket as it rather messy and I can't draw very well.
 I will however give a picture showing which of my LEDs are linked together to
 give one and idea of how wiring may work.
+
+LED pic
+button pic
+jacket pic
+
+# Using the Jacket
+I would say the device works in a rather simple fashion. All one must do is upload
+the code once and it is good to go. From that point just power must be given to
+the Arduino to run the jacket, that is why the external power pack is also sewn to
+the jacket. Here is a breakdown of the four functions and how to work them.
+1. ### Right turn
+To turn on this function all one has to do is press the right signal button
+that I have located on the right cuff of the jacket. Doing so will cause the 
+right signal to blink in its fashion until the button is pressed again. The code 
+I have doesn't read for the off button push until the signal does a full blink
+so the button may have to be held for a little bit for it to work.
+
+1. ### Left Turn
+This is identical to the right turn in every way except this button is located 
+on the left cuff rather than the right. otherwise functioanlly the same where it 
+remains blinking left signal until the button is pressed again.
+
+1. ### Brake
+Again this is activated by pressing the other button located on the right cuff 
+of the jacket, I differentiated the two by having different button colours.
+This will then have the brake lights turn on and stay on until the button is pressed
+once again.
+
+1. ### Night time Mode
+This function is activated by pressing both the left and right signal buttons at the 
+same time. Once both are pressed simultaneously then all the lights will blink in the fashion
+prescribed by the code. Again they will blink until either the right or left button is
+pressed. As well, it doesn't read for the push until the end of the blink cycle so the 
+button may have to be held for a little. 
+
+## Important Note
+Each sleeve has an indicator LED near the cuff. Whenever a function is entered it
+blinks to notify the wearer that a function has been entered. Each function has its
+own pattern/pace of blinking to help further notify the wear which function is on. For
+example the left hand blinks during the left turn, right light for the right turn, both
+for night time and the right again at a faster pace for brake. 

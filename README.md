@@ -78,7 +78,7 @@ for night time and the right again at a faster pace for brake.
 
 # The Team
 This was essentailly a one man project done by Quinten Ruckaber. However it is 
-important to note that he has a girlfriend who was kind enough to help out
+important to note that he has a girlfriend (Paige Sabados) who was kind enough to help out
 with a large portion of the sewing as he is not/was not very good or fast
 when it came to sewing!
 

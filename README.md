@@ -36,6 +36,8 @@ I will however give a picture showing which of my LEDs are linked together to
 give one and idea of how wiring may work.
 
 ![LED and Button Pic](https://github.com/Choclynn/Class-Project/blob/master/LED%20and%20Button%20Arduino.png)
+![Jacket LEDs](https://github.com/Choclynn/Class-Project/blob/master/Jacket%20LEDs.png)
+
 
 
 

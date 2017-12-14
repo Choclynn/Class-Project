@@ -51,18 +51,18 @@ right signal to blink in its fashion until the button is pressed again. The code
 I have doesn't read for the off button push until the signal does a full blink
 so the button may have to be held for a little bit for it to work.
 
-1. ### Left Turn
+2. ### Left Turn
 This is identical to the right turn in every way except this button is located 
 on the left cuff rather than the right. otherwise functioanlly the same where it 
 remains blinking left signal until the button is pressed again.
 
-1. ### Brake
+3. ### Brake
 Again this is activated by pressing the other button located on the right cuff 
 of the jacket, I differentiated the two by having different button colours.
 This will then have the brake lights turn on and stay on until the button is pressed
 once again.
 
-1. ### Night time Mode
+4. ### Night time Mode
 This function is activated by pressing both the left and right signal buttons at the 
 same time. Once both are pressed simultaneously then all the lights will blink in the fashion
 prescribed by the code. Again they will blink until either the right or left button is
@@ -75,3 +75,16 @@ blinks to notify the wearer that a function has been entered. Each function has 
 own pattern/pace of blinking to help further notify the wear which function is on. For
 example the left hand blinks during the left turn, right light for the right turn, both
 for night time and the right again at a faster pace for brake. 
+
+# The Team
+This was essentailly a one man project done by Quinten Ruckaber. However it is 
+important to note that he has a girlfriend who was kind enough to help out
+with a large portion of the sewing as he is not/was not very good or fast
+when it came to sewing!
+
+# Credits
+The main inspiration and start point for the build came from:
+* Leah Buechley from Instrucable.com (Turn Signal Biking Jacket)
+A commentor however also did something similar and provided help with
+more of the code aspect of the jacket:
+* Chris Ruppel - https://chrisruppel.com/blog/lilypad-arduino-biking-jacket/

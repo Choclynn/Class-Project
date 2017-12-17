@@ -7,7 +7,7 @@ signal, brake lights, and finally a night time visability mode.
 This particular project is controlled by an Ardunio Uno.
 
 # Project Picture
-![final project] https://github.com/Choclynn/Class-Project/blob/master/IMG_1929.JPG
+![final project](https://github.com/Choclynn/Class-Project/blob/master/IMG_1929.JPG)
 
 # List of Materials
 The materials I ended up using include:
